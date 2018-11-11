@@ -1,2 +1,2 @@
 # SFML-Platformer2D
-SFML 2D Platformer
+2D Platformer i'm currently working on in SFML/C++
