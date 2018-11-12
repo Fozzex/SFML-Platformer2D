@@ -16,6 +16,7 @@ public:
 	Application(unsigned int width, unsigned int height, const std::string& title);
 	~Application();
 
+	// The main entry point of the game
 	void run();
 
 private:

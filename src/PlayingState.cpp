@@ -3,7 +3,7 @@
 PlayingState::PlayingState(const Game& game) :
 	m_GameData(game)
 {
-	mario.setTexture(m_GameData.textureManager->getResource("mario.png"));
+	m_Player = std::make_unique<Player>(m_GameData);
 }
 
 PlayingState::~PlayingState()
@@ -21,19 +21,19 @@ void PlayingState::handleInput(float dt)
 			m_GameData.window->close();
 			break;
 		}
+
+		m_Player->handleInput(evnt, dt);
 	}
 }
 
 void PlayingState::update(float dt)
 {
-
+	m_Player->update(dt);
 }
 
 void PlayingState::render()
 {
 	m_GameData.window->clear(); // Begin Frame
-
-	m_GameData.window->draw(mario);
-
+	m_Player->render();
 	m_GameData.window->display(); // End Frame
 }

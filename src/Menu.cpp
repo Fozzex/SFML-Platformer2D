@@ -35,11 +35,6 @@ void Menu::updateEvents(const sf::Event& evnt)
 						m_GameData.states->pop();
 						m_GameData.states->push(button.callbackState);
 					}
-
-					if (button.isExit)
-					{
-						m_GameData.window->close();
-					}
 				}
 			}
 		}
@@ -98,7 +93,7 @@ int Menu::addButton(const std::string& text)
 	button.button.setSize(m_Size);
 	button.button.setFillColor(m_IdleColour);
 	
-	m_Font.loadFromFile("res/fonts/arial.ttf");
+	m_Font = m_GameData.fontManager->getResource("arial.ttf");
 	button.text.setFont(m_Font);
 
 	button.text.setFillColor({ 255, 255, 255 });
@@ -118,11 +113,6 @@ void Menu::setCallback(int index, Callback function)
 void Menu::setCallbackState(int index, State* state)
 {
 	m_Buttons[index].callbackState = state;
-}
-
-void Menu::setCallbackExit(int index)
-{
-	m_Buttons[index].isExit = true;
 }
 
 void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const

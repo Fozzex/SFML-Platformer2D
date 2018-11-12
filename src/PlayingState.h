@@ -1,7 +1,10 @@
 #pragma once
+#include <memory>
 #include <SFML/Graphics.hpp>
+
 #include "State.h"
 #include "Game.h"
+#include "Player.h"
 
 class PlayingState : public State
 {
@@ -17,6 +20,7 @@ public:
 private:
 
 	Game m_GameData;
-	sf::Sprite mario;
-
+	
+	std::unique_ptr<Player> m_Player;
+	
 };

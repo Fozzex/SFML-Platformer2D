@@ -11,15 +11,24 @@ MenuState::MenuState(const Game& data) :
 	int settingsButton  = m_Menu.addButton("Settings");
 	int exitButton		= m_Menu.addButton("Exit");
 
+	// Button Callbacks
 	m_Menu.setCallbackState(playButton, m_PlayingState.get());
-	m_Menu.setCallback(settingsButton, []()
-	{
-		std::cout << "The Settings menu hasn't been created yet.. Sorry :(" << std::endl;
-	});
-	m_Menu.setCallbackExit(exitButton);
 
-	m_Menu.setButtonSize({ 200, 50 });
+	m_Menu.setCallback(settingsButton, []() 
+	{ 
+		std::cout << "Who needs settings anyway, amirite?" << std::endl; 
+	});
+
+	m_Menu.setCallback(exitButton, [&]()
+	{
+		m_GameData.window->close();
+	});
+
+	m_Menu.setButtonSize({ 250, 50 });
 	m_Menu.setCentre();
+
+	m_BGSurface.setSize({ 1280, 720 });
+	m_BGSurface.setTexture(&m_GameData.textureManager->getResource("background.jpg"));
 }
 
 MenuState::~MenuState()
@@ -51,6 +60,7 @@ void MenuState::render()
 {
 	m_GameData.window->clear(); // Begin Frame
 
+	m_GameData.window->draw(m_BGSurface);
 	m_GameData.window->draw(m_Menu);
 
 	m_GameData.window->display(); // End Frame

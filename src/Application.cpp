@@ -30,6 +30,7 @@ void Application::run()
 
 	while (m_Window.isOpen())
 	{
+		// Delta time calculation
 		currFrame = m_Timer.getElapsedTime().asSeconds();
 		deltaTime = currFrame - prevFrame;
 		prevFrame = currFrame;
