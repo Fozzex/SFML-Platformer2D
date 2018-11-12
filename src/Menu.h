@@ -7,7 +7,7 @@
 #include "State.h"
 #include "Game.h"
 
-using Callback = void(*)();
+using Callback = std::function<void()>;
 
 class Menu : public sf::Drawable
 {
@@ -27,7 +27,6 @@ public:
 	int addButton(const std::string& text);
 	void setCallback(int index, Callback function);
 	void setCallbackState(int index, State* state);
-	void setCallbackExit(int index);
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
@@ -45,7 +44,6 @@ private:
 		State* callbackState = nullptr;
 		Callback callback = nullptr;
 		bool isHover = false;
-		bool isExit = false;
 	};
 
 	sf::Font m_Font;

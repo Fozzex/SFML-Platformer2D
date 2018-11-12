@@ -1,10 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <stack>
+#include <map>
 
 #include "ResourceManager.h"
 #include "State.h"
 
+// Game struct being passed through
+// all game classes
 struct Game
 {
 	// Engine Related
